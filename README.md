@@ -27,10 +27,10 @@ Ensure you have Python 3.7+ installed along with the following required librarie
 
    How It Works (Under the Hood)
    
-   simulate_mems_sensor_data():Generates a 2Hz sine wave sampled at 1kHz, simulating standard physical movement over a 10-second window.
-   inject_noise():Between t = 3.0s and t = 4.5s, a 450Hz high-amplitude signal is superimposed onto the baseline data. This mimics a real-world scenario where an acoustic wave matches the MEMS mass's      resonant frequency, causing it to vibrate uncontrollably and output spoofed data.
-   detect_anomalies():Acts as a software-based Intrusion Detection System (IDS). By calculating the rate of change ($\Delta amplitude / \Delta time$), it identifies spikes that exceed a predefined physical threshold (e.g., an acceleration that is physically impossible for the device to achieve on its own), flagging them as an anomaly.
-   butter_lowpass_filter():Acts as the mitigation layer. It uses a 15Hz cutoff frequency to filter out the 450Hz spoofed noise. By utilizing filtfilt, the filter is applied both forward and backward, ensuring the cleaned signal remains perfectly phase-aligned with the original physical movement.
+   1. simulate_mems_sensor_data():Generates a 2Hz sine wave sampled at 1kHz, simulating standard physical movement over a 10-second window.
+   2. inject_noise():Between t = 3.0s and t = 4.5s, a 450Hz high-amplitude signal is superimposed onto the baseline data. This mimics a real-world scenario where an acoustic wave matches the MEMS mass's      resonant frequency, causing it to vibrate uncontrollably and output spoofed data.
+   3. detect_anomalies():Acts as a software-based Intrusion Detection System (IDS). By calculating the rate of change ($\Delta amplitude / \Delta time$), it identifies spikes that exceed a predefined physical threshold (e.g., an acceleration that is physically impossible for the device to achieve on its own), flagging them as an anomaly.
+   4. butter_lowpass_filter():Acts as the mitigation layer. It uses a 15Hz cutoff frequency to filter out the 450Hz spoofed noise. By utilizing filtfilt, the filter is applied both forward and backward, ensuring the cleaned signal remains perfectly phase-aligned with the original physical movement.
 
    Author
    Varad Gandhi
